@@ -1,17 +1,19 @@
 name: CI
 
 on:
+  push:
   schedule:
     - cron:  '*/5 * * * *'
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
     - name: Run a multi-line script
+      env:
+        TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
       run: |
-        echo helloworld
-        echo `date`
+        echo helloworld, key: $TEST_API_KEY
+        date
