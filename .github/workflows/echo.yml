@@ -10,10 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Run a multi-line script
+    - name: Call netlify build hook
       env:
-        TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
+        HOOK_URL: ${{ secrets.HOOK_URL }}
       run: |
-        echo helloworld, key: $TEST_API_KEY
+        curl -X POST -d {} $HOOK_URL
         date
