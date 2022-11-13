@@ -1,0 +1,19 @@
+
+name: Docker Build/Push
+
+on:
+  push:
+  pull_request:
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: show
+      run: pwd
+    - uses: docker/build-push-action@v3.2.0
+      with:
+        push: false
+        #tags: # optional
